@@ -1,5 +1,6 @@
 import { Component } from "react";
 import { ThreeDots } from "react-loader-spinner";
+import Jobcard from "../Jobcard";
 import "./index.css";
 class Jobs extends Component {
   state = {
@@ -73,12 +74,36 @@ class Jobs extends Component {
     );
   };
 
+  onclickJobCard = (id) => {
+    this.setState({ jobDetailsId: id });
+  };
+
+  renderJobsView = () => {
+    const { jobs } = this.state;
+    return (
+      <div className="jobs-view">
+        <h1 className="all-jobs-heading">All Jobs</h1>
+        <ul className="jobs-ul-container">
+          {jobs.map((eachjob) => (
+            <Jobcard
+              key={eachjob.id}
+              jobDetails={eachjob}
+              clickJobCard={this.onclickJobCard}
+            />
+          ))}
+        </ul>
+      </div>
+    );
+  };
+
   render() {
     const { isLoading, jobs, error, jobDetailsId } = this.state;
     if (isLoading) {
       return this.renderLoadingView();
     } else if (jobs.length === 0 || error !== "") {
       return this.renderFailureView();
+    } else {
+      return this.renderJobsView();
     }
   }
 }

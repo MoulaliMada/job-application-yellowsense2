@@ -5,3 +5,43 @@
     height: 500px;
     bottom:40px
 }
+.jobs-ul-container{
+    flex-wrap: wrap;
+    overflow-y: auto;
+    list-style-type: none;
+    height: 85vh;
+    padding: 0px;
+    display: flex;
+    justify-content: center;
+}
+.all-jobs-heading{
+    margin: 0px;
+    font-size: 18px;
+}
+.jobs-view{
+    padding: 13px;
+}
+@media(min-width:568px){
+    .jobs-ul-container{
+        height: 90vh;
+        padding: 0px;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+    }
+    .all-jobs-heading{
+        font-size: 20px;
+    }
+}
+@media(min-width:992px){
+    .jobs-ul-container{
+        height: 90vh;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+        flex-wrap: wrap;
+    }
+    .all-jobs-heading{
+        font-size: 24px;
+    }
+}
