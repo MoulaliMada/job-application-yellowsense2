@@ -1,6 +1,7 @@
 import { Component } from "react";
 import { ThreeDots } from "react-loader-spinner";
 import Jobcard from "../Jobcard";
+import JobDetails from "../JobDetails";
 import "./index.css";
 class Jobs extends Component {
   state = {
@@ -95,11 +96,44 @@ class Jobs extends Component {
       </div>
     );
   };
+  onClickBack = () => {
+    this.setState({ jobDetailsId: "" });
+  };
+
+  onClickRemoveBookMark = (id) => {
+    const { bookmarks } = this.state;
+    const removeBookMark = bookmarks.filter((eachJob) => eachJob.id !== id);
+    localStorage.setItem("bookmarks", JSON.stringify(removeBookMark));
+    this.setState({ bookmarks: removeBookMark });
+  };
+
+  onClickAddBookMark = (id) => {
+    const { jobs, bookmarks } = this.state;
+    const bookMarkJob = jobs.find((eachJob) => eachJob.id === id);
+    const addedbookMarks = [...bookmarks, bookMarkJob];
+    localStorage.setItem("bookmarks", JSON.stringify(addedbookMarks));
+    this.setState({ bookmarks: addedbookMarks });
+  };
+
+  renderJobDetailsView = () => {
+    const { jobs, jobDetailsId } = this.state;
+    const jobData = jobs.find((eachjob) => eachjob.id === jobDetailsId);
+    return (
+      <JobDetails
+        jobData={jobData}
+        clickBack={this.onClickBack}
+        clickRemoveBookMark={this.onClickRemoveBookMark}
+        clickAddBookMark={this.onClickAddBookMark}
+      />
+    );
+  };
 
   render() {
     const { isLoading, jobs, error, jobDetailsId } = this.state;
     if (isLoading) {
       return this.renderLoadingView();
+    } else if (jobDetailsId !== "") {
+      return this.renderJobDetailsView();
     } else if (jobs.length === 0 || error !== "") {
       return this.renderFailureView();
     } else {
