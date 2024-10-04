@@ -3,6 +3,8 @@
   width: 95%;
   display: flex;
   justify-content: center;
+  min-height: 10px;
+  align-items: start;
 }
 .job-card-container {
   border-style: solid;

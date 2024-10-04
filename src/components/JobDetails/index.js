@@ -23,8 +23,6 @@ function JobDetails(props) {
 
   const [isJobpresent, setisJobPresent] = useState(false);
 
-  console.log(isJobpresent);
-
   useEffect(() => {
     // Get the jobs list from localStorage when component mounts
     const savedJobs = localStorage.getItem("bookmarks");

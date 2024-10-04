@@ -33,6 +33,14 @@
         font-size: 20px;
     }
 }
+@media(min-width:768px){
+    .all-jobs-heading{
+        font-size: 25px;
+    }
+    .jobs-view{
+        padding: 20px;
+    }
+}
 @media(min-width:992px){
     .jobs-ul-container{
         height: 90vh;
@@ -42,6 +50,25 @@
         flex-wrap: wrap;
     }
     .all-jobs-heading{
-        font-size: 24px;
+        font-size: 25px;
+    }
+    .jobs-view{
+        padding: 20px;
+    }
+}
+@media(min-width:992px){
+    .all-jobs-heading{
+        font-size: 26px;
+    }
+    .jobs-view{
+        padding: 22px;
+    }
+}
+@media(min-width:1200px){
+    .all-jobs-heading{
+        font-size: 28px;
+    }
+    .jobs-view{
+        padding: 22px;
     }
 }

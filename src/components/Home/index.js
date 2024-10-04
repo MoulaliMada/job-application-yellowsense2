@@ -3,10 +3,11 @@ import Jobs from "../Jobs";
 import Bookmarks from "../Bookmarks";
 import "./index.css";
 
-function Home(){
+function Home() {
   const [navigationPage, setNavigationPage] = useState("Jobs");
   const onClickJobs = () => setNavigationPage("Jobs");
   const onClickBookmarks = () => setNavigationPage("Bookmarks");
+
   return (
     <div className="app">
       {navigationPage === "Jobs" ? <Jobs /> : <Bookmarks />}
@@ -32,6 +33,5 @@ function Home(){
       </div>
     </div>
   );
-  
 }
 export default Home;
