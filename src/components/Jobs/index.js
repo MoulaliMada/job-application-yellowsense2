@@ -110,9 +110,21 @@ class Jobs extends Component {
   onClickAddBookMark = (id) => {
     const { jobs, bookmarks } = this.state;
     const bookMarkJob = jobs.find((eachJob) => eachJob.id === id);
-    const addedbookMarks = [...bookmarks, bookMarkJob];
-    localStorage.setItem("bookmarks", JSON.stringify(addedbookMarks));
-    this.setState({ bookmarks: addedbookMarks });
+    const isBookMarkedAlready = bookmarks.find((eachJob) => eachJob.id === id);
+    if (isBookMarkedAlready === undefined) {
+      const addedbookMarks = [...bookmarks, bookMarkJob];
+      localStorage.setItem("bookmarks", JSON.stringify(addedbookMarks));
+      this.setState({ bookmarks: addedbookMarks });
+    }
+  };
+
+  onSwipedRight = (id) => {
+    this.onClickAddBookMark(id);
+    this.setState({ jobDetailsId: "" });
+  };
+
+  onswipedLeft = (id) => {
+    alert("Swipe Right to add Bookmark");
   };
 
   renderJobDetailsView = () => {
@@ -124,6 +136,8 @@ class Jobs extends Component {
         clickBack={this.onClickBack}
         clickRemoveBookMark={this.onClickRemoveBookMark}
         clickAddBookMark={this.onClickAddBookMark}
+        swipedRight={this.onSwipedRight}
+        swipedLeft={this.onswipedLeft}
       />
     );
   };

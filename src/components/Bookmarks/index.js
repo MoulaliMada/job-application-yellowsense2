@@ -31,7 +31,6 @@ class Bookmarks extends Component {
 
   renderBookmarksView = () => {
     const { bookmarks } = this.state;
-    console.log(bookmarks);
     return (
       <div className="jobs-view">
         <h1 className="all-jobs-heading">Book Marks</h1>
@@ -57,10 +56,15 @@ class Bookmarks extends Component {
     const removeBookMark = bookmarks.filter((eachJob) => eachJob.id !== id);
     localStorage.setItem("bookmarks", JSON.stringify(removeBookMark));
     this.setState({ bookmarks: removeBookMark, jobDetailsId: "" });
-    console.log(id);
   };
 
-  onClickAddBookMark = (id) => {};
+  onSwipedRight = (id) => {
+    alert("swipe left to remove book mark");
+  };
+
+  onSwipedLeft = (id) => {
+    this.onClickRemoveBookMark(id);
+  };
 
   renderJobDetailsView = () => {
     const { bookmarks, jobDetailsId } = this.state;
@@ -70,7 +74,8 @@ class Bookmarks extends Component {
         jobData={jobData}
         clickBack={this.onClickBack}
         clickRemoveBookMark={this.onClickRemoveBookMark}
-        clickAddBookMark={this.onClickAddBookMark}
+        swipedRight={this.onSwipedRight}
+        swipedLeft={this.onSwipedLeft}
       />
     );
   };

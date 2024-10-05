@@ -45,6 +45,10 @@
   .active-nav-buttons {
     font-size: 16px;
   }
+  .bottom-nav-bar {
+    height: 40px;
+    padding-bottom: 3px;
+  }
 }
 @media (min-width: 768px) {
   .nav-buttons {
@@ -52,6 +56,14 @@
   }
   .active-nav-buttons {
     font-size: 18px;
+  }
+  .bottom-nav-bar {
+    padding-bottom: 5px;
+  }
+}
+@media(min-width:992px){
+  .bottom-nav-bar {
+    padding-bottom: 8px;
   }
 }
 @media (min-width: 1400px) {

@@ -2,10 +2,18 @@ import React, { useState, useEffect } from "react";
 import { FcLike } from "react-icons/fc";
 import { GrFavorite } from "react-icons/gr";
 import { FaArrowLeft } from "react-icons/fa6";
+import { useSwipeable } from "react-swipeable";
 import "./index.css";
 
 function JobDetails(props) {
-  const { jobData, clickAddBookMark, clickBack, clickRemoveBookMark } = props;
+  const {
+    jobData,
+    clickAddBookMark,
+    clickBack,
+    clickRemoveBookMark,
+    swipedRight,
+    swipedLeft,
+  } = props;
   const {
     id,
     companeyName,
@@ -33,6 +41,11 @@ function JobDetails(props) {
     }
   }, [id]);
 
+  const handlers = useSwipeable({
+    onSwipedRight: () => swipedRight(id),
+    onSwipedLeft: () => swipedLeft(id),
+  });
+
   const onClickAddBookMark = () => {
     clickAddBookMark(id);
     setisJobPresent(true);
@@ -48,11 +61,11 @@ function JobDetails(props) {
 
   return (
     <div className="job-detail-container1">
-      <div className="job-detail-container">
+      <div {...handlers} className="job-detail-container">
         <h1 className="companeyName">{companeyName}</h1>
         <p className="title">{title}</p>
         <div className="details-containe">
-          <div className="details-containe-1" >
+          <div className="details-containe-1">
             <p className="title">
               <span className="span">job Category : </span>
               {jobCategory}
