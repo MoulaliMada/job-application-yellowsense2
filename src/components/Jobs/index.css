@@ -21,6 +21,9 @@
 .jobs-view{
     padding: 13px;
 }
+.no-bookmarks-container{
+    flex-direction: column;
+}
 @media(min-width:568px){
     .jobs-ul-container{
         height: 90vh;

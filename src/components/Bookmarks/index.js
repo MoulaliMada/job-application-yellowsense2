@@ -58,25 +58,26 @@ class Bookmarks extends Component {
     this.setState({ bookmarks: removeBookMark, jobDetailsId: "" });
   };
 
-  onSwipedRight = (id) => {
-    alert("swipe left to remove book mark");
-  };
-
   onSwipedLeft = (id) => {
     this.onClickRemoveBookMark(id);
   };
+  onSwipedRight=(id)=>{
+    alert("Swipe Left to Remove Job Bookmark")
+  }
 
   renderJobDetailsView = () => {
     const { bookmarks, jobDetailsId } = this.state;
     const jobData = bookmarks.find((eachjob) => eachjob.id === jobDetailsId);
     return (
-      <JobDetails
-        jobData={jobData}
-        clickBack={this.onClickBack}
-        clickRemoveBookMark={this.onClickRemoveBookMark}
-        swipedRight={this.onSwipedRight}
-        swipedLeft={this.onSwipedLeft}
-      />
+      <>
+        <JobDetails
+          jobData={jobData}
+          clickBack={this.onClickBack}
+          clickRemoveBookMark={this.onClickRemoveBookMark}
+          swipedRight={this.onSwipedRight}
+          swipedLeft={this.onSwipedLeft}
+        />
+      </>
     );
   };
 

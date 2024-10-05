@@ -30,7 +30,7 @@ class Jobs extends Component {
     try {
       const apiUrl = `https://testapi.getlokalapp.com/common/jobs?page=${page}`; //fetching data
       const response = await fetch(apiUrl);
-      if (response.ok) {
+      if (!response.ok) {
         const data = await response.json();
         const result = data.results;
         const updatedData = result.map((eachResult) => ({
@@ -56,6 +56,8 @@ class Jobs extends Component {
         } else {
           this.setState({ jobs, isLoading: false });
         }
+      } else {
+        this.setState({ isLoading: false });
       }
     } catch (error) {
       this.setState({ error, isLoading: false });
@@ -68,9 +70,14 @@ class Jobs extends Component {
   );
 
   renderFailureView = () => {
+    const { error } = this.state;
     return (
-      <div>
-        <h1>failye</h1>
+      <div className="jobs-view">
+        <h1 className="all-jobs-heading">All Jobs</h1>
+        <div className="no-bookmarks-container">
+          <p className="no-bookmarks">No jobs Available</p>
+          {error !== "" && <p className="no-bookmarks">{error}</p>}
+        </div>
       </div>
     );
   };
