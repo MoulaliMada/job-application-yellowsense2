@@ -3,10 +3,15 @@ import Jobcard from "../Jobcard";
 import JobDetails from "../JobDetails";
 import "./index.css";
 class Bookmarks extends Component {
+  // Initializing the state with bookmarks array, selected jobDetailsId, and removedBookMartk object
   state = { bookmarks: [], jobDetailsId: "", removedBookMartk: {} };
+
+  // This lifecycle method runs after the component is mounted, used to get bookmarks from local storage
   componentDidMount() {
     this.detDataFromLocalstorage();
   }
+
+  // Method to retrieve data from local storage and update the state with the bookmarks
   detDataFromLocalstorage = () => {
     const localstorageBookmarks = localStorage.getItem("bookmarks");
     const localStoragedata = JSON.parse(localstorageBookmarks);
@@ -14,6 +19,8 @@ class Bookmarks extends Component {
       this.setState({ bookmarks: localStoragedata });
     }
   };
+
+  // Render a message when there are no bookmarks in local storage
   renderBookmarksEmptyView = () => {
     return (
       <div className="jobs-view">
@@ -25,10 +32,12 @@ class Bookmarks extends Component {
     );
   };
 
+  // Method to handle clicking on a job card to view job details
   onclickJobCard = (id) => {
     this.setState({ jobDetailsId: id });
   };
 
+  // Render the list of bookmarked jobs
   renderBookmarksView = () => {
     const { bookmarks } = this.state;
     return (
@@ -47,10 +56,12 @@ class Bookmarks extends Component {
     );
   };
 
+  // Method to handle the back button click in job details view
   onClickBack = () => {
     this.setState({ jobDetailsId: "" });
   };
 
+  // Method to remove a bookmark by ID and update local storage
   onClickRemoveBookMark = (id) => {
     const { bookmarks } = this.state;
     const removeBookMark = bookmarks.filter((eachJob) => eachJob.id !== id);
@@ -58,13 +69,17 @@ class Bookmarks extends Component {
     this.setState({ bookmarks: removeBookMark, jobDetailsId: "" });
   };
 
+  // Swipe left action to remove a job from bookmarks
   onSwipedLeft = (id) => {
     this.onClickRemoveBookMark(id);
   };
-  onSwipedRight=(id)=>{
-    alert("Swipe Left to Remove Job Bookmark")
-  }
 
+  // Swipe right action to alert the user (placeholder action)
+  onSwipedRight = (id) => {
+    alert("Swipe Left to Remove Job Bookmark");
+  };
+
+  // Render the job details view for a selected job
   renderJobDetailsView = () => {
     const { bookmarks, jobDetailsId } = this.state;
     const jobData = bookmarks.find((eachjob) => eachjob.id === jobDetailsId);
@@ -83,11 +98,16 @@ class Bookmarks extends Component {
 
   render() {
     const { bookmarks, jobDetailsId } = this.state;
+    // If no bookmarks are available, show the empty view
     if (bookmarks.length === 0) {
       return this.renderBookmarksEmptyView();
-    } else if (jobDetailsId !== "") {
+    }
+    // If a job is selected, show job details view
+    else if (jobDetailsId !== "") {
       return this.renderJobDetailsView();
-    } else {
+    }
+    // Otherwise, show the list of bookmarked jobs
+    else {
       return this.renderBookmarksView();
     }
   }

@@ -6,6 +6,7 @@ import { useSwipeable } from "react-swipeable";
 import "./index.css";
 
 function JobDetails(props) {
+  // Destructuring props passed from the parent component
   const {
     jobData,
     clickAddBookMark,
@@ -14,6 +15,8 @@ function JobDetails(props) {
     swipedRight,
     swipedLeft,
   } = props;
+
+  // Destructuring job details from the jobData object
   const {
     id,
     companeyName,
@@ -27,10 +30,14 @@ function JobDetails(props) {
     numApplications,
     title,
   } = jobData;
+
+  // Destructuring primary details like experience, qualification, and salary
   const { Experience, Qualification, Salary } = primaryDetails;
 
+  // State to check if the job is present in bookmarks
   const [isJobpresent, setisJobPresent] = useState(false);
 
+  // Effect to check if the job is already bookmarked when the component mounts
   useEffect(() => {
     // Get the jobs list from localStorage when component mounts
     const savedJobs = localStorage.getItem("bookmarks");
@@ -41,25 +48,34 @@ function JobDetails(props) {
     }
   }, [id]);
 
+  // Swipeable handlers for right and left swipe gestures
   const handlers = useSwipeable({
     onSwipedRight: () => swipedRight(id),
     onSwipedLeft: () => swipedLeft(id),
+    delta: 10,
+    preventDefaultTouchmoveEvent: true,
+    trackMouse: true,
   });
 
+  // Handler to add the job to bookmarks
   const onClickAddBookMark = () => {
     clickAddBookMark(id);
     setisJobPresent(true);
   };
 
+  // Handler to go back to the previous page
   const onClickBack = () => {
     clickBack();
   };
+
+  // Handler to remove the job from bookmarks
   const onClickRemoveBookMark = () => {
     clickRemoveBookMark(id);
     setisJobPresent(false);
   };
 
   return (
+    // Main container for the job details, with swipeable functionality
     <div className="job-detail-container1">
       <div {...handlers} className="job-detail-container">
         <h1 className="companeyName">{companeyName}</h1>
@@ -127,6 +143,8 @@ function JobDetails(props) {
               Add Bookmark
             </button>
           )}
+
+          {/* Icons for adding/removing bookmark */}
           {isJobpresent ? (
             <button
               className="add-bookmark-icon"
@@ -140,6 +158,8 @@ function JobDetails(props) {
             </button>
           )}
         </div>
+
+        {/* Buttons to navigate back */}
         <button className="back-btn" onClick={onClickBack}>
           Back
         </button>

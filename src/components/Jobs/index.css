@@ -12,7 +12,6 @@
     height: 85vh;
     padding: 0px;
     display: flex;
-    justify-content: center;
 }
 .all-jobs-heading{
     margin: 0px;
@@ -49,7 +48,6 @@
         height: 90vh;
         display: flex;
         flex-direction: row;
-        justify-content: space-between;
         align-items: flex-start;
         flex-wrap: wrap;
     }
