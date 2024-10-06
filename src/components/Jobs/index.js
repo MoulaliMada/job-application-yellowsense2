@@ -1,6 +1,6 @@
 import { Component } from "react";
 import { ThreeDots } from "react-loader-spinner";
-import Jobcard from "../Jobcard";
+import JobCard from "../JobCard";
 import JobDetails from "../JobDetails";
 import "./index.css";
 
@@ -112,7 +112,7 @@ class Jobs extends Component {
         <h1 className="all-jobs-heading">All Jobs</h1>
         <ul className="jobs-ul-container">
           {jobs.map((eachjob) => (
-            <Jobcard
+            <JobCard
               key={eachjob.id}
               jobDetails={eachjob}
               clickJobCard={this.onclickJobCard}

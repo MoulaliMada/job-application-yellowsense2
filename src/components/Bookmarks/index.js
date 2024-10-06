@@ -1,5 +1,5 @@
 import { Component } from "react";
-import Jobcard from "../Jobcard";
+import JobCard from "../JobCard";
 import JobDetails from "../JobDetails";
 import "./index.css";
 class Bookmarks extends Component {
@@ -45,7 +45,7 @@ class Bookmarks extends Component {
         <h1 className="all-jobs-heading">Book Marks</h1>
         <ul className="jobs-ul-container">
           {bookmarks.map((eachjob) => (
-            <Jobcard
+            <JobCard
               key={eachjob.id}
               jobDetails={eachjob}
               clickJobCard={this.onclickJobCard}

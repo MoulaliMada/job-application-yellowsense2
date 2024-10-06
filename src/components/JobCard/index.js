@@ -1,6 +1,6 @@
 import "./index.css";
 
-function Jobcard(props) {
+function JobCard(props) {
   // Destructuring the jobDetails and clickJobCard function from props
   const { jobDetails, clickJobCard } = props;
 
@@ -35,4 +35,4 @@ function Jobcard(props) {
     </li>
   );
 }
-export default Jobcard;
+export default JobCard;
